@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { quotes } from './quotes.json';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 
 const AppWrapper = styled.div`
   background: ${props => props.color};
@@ -25,6 +27,16 @@ const Box = styled.div`
 const QuoteText = styled.div`
   font-size: 28px;
   margin-bottom: 20px;
+  position: relative;
+
+  svg {
+    position: absolute;
+    top: 2px;
+  }
+
+  span {
+    padding-left: 30px;
+  }
 `
 
 const QuoteAuthor = styled.div`
@@ -47,7 +59,7 @@ const BoxButton = styled.div`
 
 const Button = styled.button`
   float: right;
-  padding: 8px 18px 6px 18px;
+  padding: 8px 18px;
   border: none;
   border-radius: 3px;
   background-color: ${props => props.color};
@@ -107,7 +119,10 @@ class App extends React.Component<Props, State> {
       <AppWrapper color={this.state.color}>
         <Box color={this.state.color}>
           <QuoteText>
-            {this.state.quote['quote']}
+            <FontAwesomeIcon icon={faQuoteLeft} size="xs" />
+            <span>
+              {this.state.quote['quote']}
+            </span>
           </QuoteText>
           <QuoteAuthor>
             <span>{this.state.quote['author']}</span>
